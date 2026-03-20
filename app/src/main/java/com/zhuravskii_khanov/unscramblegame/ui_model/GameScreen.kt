@@ -1,5 +1,6 @@
 package com.zhuravskii_khanov.unscramblegame.ui_model
 
+import android.app.AlertDialog
 import android.inputmethodservice.Keyboard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -32,6 +33,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.AlertDialog
 
 @Composable
 fun GameScreen(
@@ -65,6 +68,13 @@ fun GameScreen(
             onSubmitClicked = { gameViewModel.checkUserGuess() },
             onSkipClicked = { gameViewModel.skipWord()}
         )
+
+        if (gameUiState.isGameOver) {
+            FinalScoreDialog(
+                score = gameUiState.score,
+                onPlayAgain = { gameViewModel.resetGame() }
+            )
+        }
     }
 }
 
@@ -181,4 +191,36 @@ fun GameLayout(
             )
         }
     }
+}
+
+@Composable
+fun FinalScoreDialog(
+    score: Int,
+    onPlayAgain: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = {
+
+        },
+
+        title = { Text(text = "Поздравляем!") },
+        text = {
+            Column {
+                Text(text = "Вы набрали:")
+                Text(
+                    text = "$score очков",
+                    style = MaterialTheme.typography.displaySmall,
+                    fontSize = 36.sp
+                )
+            }
+        },
+        modifier = modifier,
+        dismissButton = {},
+        confirmButton = {
+            TextButton(onClick = onPlayAgain) {
+                Text(text = "Играть снова")
+            }
+        }
+    )
 }
