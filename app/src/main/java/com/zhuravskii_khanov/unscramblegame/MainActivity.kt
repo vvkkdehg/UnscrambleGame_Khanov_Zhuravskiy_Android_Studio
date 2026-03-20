@@ -21,12 +21,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             UnscrambleGameTheme {
                 Scaffold(
-                modifier = Modifier.fillMaxSize()
-            ) { innerPadding ->
-                GameScreen(
-                    modifier = Modifier.padding(innerPadding)
-                )
-            }
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    GameScreen(
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
             }
         }
     }

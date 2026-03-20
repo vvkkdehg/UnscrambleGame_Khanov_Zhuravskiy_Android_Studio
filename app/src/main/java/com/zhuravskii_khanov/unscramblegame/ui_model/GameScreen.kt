@@ -118,45 +118,51 @@ fun GameLayout(
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
-            ) { }
+            ) {
+                Text(
+                    text = currentScrambledWord,
+                    style = MaterialTheme.typography.displayMedium,
+                    fontSize = 45.sp
+                )
+            }
         }
-    }
-    Text(
-        text = "Разгадайте слово",
-        style = MaterialTheme.typography.titleMedium
-    )
-    OutlinedTextField(
-        value = userGuess,
-        onValueChange = {
-            userGuess = it
-            onUserGuessChanged(it)
-        },
-        singleLine = true,
-        modifier = Modifier.fillMaxWidth(),
-        label = { Text("Введите слово") },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = ImeAction.Done
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = { onKeyboardDone() }
-        )
-    )
-    Button(
-        onClick = {/* TODO */ },
-        modifier = Modifier.fillMaxWidth()
-    ) {
         Text(
-            text = "Проверить",
-            fontSize = 16.sp
+            text = "Разгадайте слово",
+            style = MaterialTheme.typography.titleMedium
         )
-    }
-    OutlinedButton(
-        onClick = { },
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        Text(
-            text = "Пропустить",
-            fontSize = 16.sp
+        OutlinedTextField(
+            value = userGuess,
+            onValueChange = {
+                userGuess = it
+                onUserGuessChanged(it)
+            },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text("Введите слово") },
+            keyboardOptions = KeyboardOptions.Default.copy(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { onKeyboardDone() }
+            )
         )
+        Button(
+            onClick = {/* TODO */ },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = "Проверить",
+                fontSize = 16.sp
+            )
+        }
+        OutlinedButton(
+            onClick = { /* TODO */ },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = "Пропустить",
+                fontSize = 16.sp
+            )
+        }
     }
 }
